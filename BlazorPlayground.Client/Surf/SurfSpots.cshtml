@@ -1,0 +1,23 @@
+﻿@page "/surf"
+@inherits SurfSpotsComponent
+
+<h1>Surf spots</h1>
+
+@if (SurfSpots == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div>
+        @foreach (var surfSpot in SurfSpots)
+        {
+        <div>
+            <span>@surfSpot.Name</span>
+            <span>@surfSpot.Description</span>
+        </div>
+        }
+    </div>
+}
