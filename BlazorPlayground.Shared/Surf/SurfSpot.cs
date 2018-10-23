@@ -2,6 +2,7 @@
 {
     public class SurfSpot
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public BreakType BreakType { get; set; }
         public WaveType WaveType { get; set; }

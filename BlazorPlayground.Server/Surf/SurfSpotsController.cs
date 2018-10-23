@@ -22,5 +22,12 @@ namespace BlazorPlayground.Server.Surf
             await Task.Delay(500);
             return SurfSpotService.GetSurfSpots();
         }
+
+        [HttpGet("{id}")]
+        public async Task<SurfSpot> SurfSpots(int id)
+        {
+            await Task.Delay(100);
+            return SurfSpotService.GetSurfSpot(id);
+        }
     }
 }

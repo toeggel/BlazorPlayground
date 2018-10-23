@@ -1,0 +1,15 @@
+﻿@page "/surfspots/{id}"
+@inherits SurfSpotDetailComponent
+
+Hello from Surf Spot Detail @Id
+
+@if (SurfSpot == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <h1>@SurfSpot.Name</h1>
+}
