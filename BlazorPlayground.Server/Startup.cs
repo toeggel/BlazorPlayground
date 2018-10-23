@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Net.Mime;
+using System.Threading.Tasks;
 using BlazorPlayground.Shared.Surf;
+using ElectronNET.API;
 using Microsoft.AspNetCore.Blazor.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +50,8 @@ namespace BlazorPlayground.Server
 
             // Use for server side Blazor.
             //ConfigureServerSideBlazor(app);
+
+            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
 
         private static void ConfigureServerSideBlazorServices(IServiceCollection services)
