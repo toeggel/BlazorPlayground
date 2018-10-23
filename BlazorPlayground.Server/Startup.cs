@@ -1,11 +1,11 @@
+using System.Linq;
+using System.Net.Mime;
+using BlazorPlayground.Shared.Surf;
 using Microsoft.AspNetCore.Blazor.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
-using System.Net.Mime;
-using BlazorPlayground.Server.Surf;
 
 namespace BlazorPlayground.Server
 {
@@ -15,14 +15,18 @@ namespace BlazorPlayground.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            // Use client side Blazor.
+            ConfigureClientSideBlazorServices(services);
+
+            // Use server side Blazor.
+            //ConfigureServerSideBlazorServices(services);
 
             services.AddResponseCompression(options =>
             {
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
                 {
                     MediaTypeNames.Application.Octet,
-                    WasmMediaTypeNames.Application.Wasm,
+                    WasmMediaTypeNames.Application.Wasm
                 });
             });
 
@@ -39,11 +43,31 @@ namespace BlazorPlayground.Server
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "default", template: "{controller}/{action}/{id?}");
-            });
+            // Use for client side Blazor.
+            ConfigureClientSideBlazor(app);
 
+            // Use for server side Blazor.
+            //ConfigureServerSideBlazor(app);
+        }
+
+        private static void ConfigureServerSideBlazorServices(IServiceCollection services)
+        {
+            services.AddServerSideBlazor<Client.Startup>();
+        }
+
+        private static void ConfigureServerSideBlazor(IApplicationBuilder app)
+        {
+            app.UseServerSideBlazor<Client.Startup>();
+        }
+
+        private static void ConfigureClientSideBlazorServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+
+        private static void ConfigureClientSideBlazor(IApplicationBuilder app)
+        {
+            app.UseMvc(routes => { routes.MapRoute("default", "{controller}/{action}/{id?}"); });
             app.UseBlazor<Client.Startup>();
         }
     }

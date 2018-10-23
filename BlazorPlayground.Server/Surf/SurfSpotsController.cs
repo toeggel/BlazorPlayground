@@ -19,15 +19,13 @@ namespace BlazorPlayground.Server.Surf
         [HttpGet]
         public async Task<IEnumerable<SurfSpot>> SurfSpots()
         {
-            await Task.Delay(500);
-            return SurfSpotService.GetSurfSpots();
+            return await SurfSpotService.GetSurfSpots();
         }
 
         [HttpGet("{id}")]
         public async Task<SurfSpot> SurfSpots(int id)
         {
-            await Task.Delay(100);
-            return SurfSpotService.GetSurfSpot(id);
+            return await SurfSpotService.GetSurfSpot(id);
         }
     }
 }
