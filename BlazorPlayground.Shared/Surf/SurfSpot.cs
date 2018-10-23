@@ -9,7 +9,6 @@
         public string Description { get; set; }
     }
 
-
     public enum BreakType
     {
         BeachBreak,
@@ -21,6 +20,7 @@
     {
         Left,
         Right,
-        AFrame
+        AFrame,
+        Anything
     }
 }
