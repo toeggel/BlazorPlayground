@@ -1,15 +1,25 @@
 ﻿@page "/surfspots/{id}"
 @inherits SurfSpotDetailComponent
 
-Hello from Surf Spot Detail @Id
+<h1>Surf spot</h1>
 
 @if (SurfSpot == null)
 {
     <p>
-        <em>Loading...</em>
+        <em>Loading surf spot @Id...</em>
     </p>
 }
 else
 {
-    <h1>@SurfSpot.Name</h1>
+    <h2>@SurfSpot.Name</h2>
+
+    <div>
+        <label>Name</label>
+        <input type="text"
+               ref="SpotNameInput"
+               disabled="@(!IsEditable)"
+               bind="@SurfSpot.Name"
+               onclick=@EnableEdit
+               onblur="@Save"/>
+    </div>
 }
