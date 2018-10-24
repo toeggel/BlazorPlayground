@@ -1,5 +1,7 @@
 # Blazor Playground
 
+[Blazor findings](./BlazorSummary.md)
+
 ## Client / Server Side Blazor
 Minor changes in the code base are needed to switch between server side / client side implementation
 1. In ```BlazorPlayground.Server.Startup``` use either ClientSide or ServerSide configurations (for services and app)
