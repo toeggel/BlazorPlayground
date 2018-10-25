@@ -1,9 +1,9 @@
 # Blazor (Summary)
 
-Blazor is an experimental .NET web framework using C#, Razor and HTML that runs in the browser.
+Blazor is an experimental single page web app framework built on .NET using C#, Razor and HTML that runs in the browser (via WebAssembly).
 - The Blazor App is compiled normally and downloaded via Browser
-- The .NET runtime itself is compiled to WebAssembly which runs the App. 
-
+- The .NET runtime itself is compiled to WebAssembly which runs the App.
+- It’s inspired by today’s top SPA frameworks such as React, Vue, and Angular
 - Blazor can help make web development easier and more productive
 	- Full-stack .NET
 	- Native performance with WebAssembly
